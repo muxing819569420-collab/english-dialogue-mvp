@@ -19,9 +19,9 @@
           "role": "host"
         },
         {
-          "text": "Yeah, I got here like an hour ago. I’m still trying to get my bearings.",
+          "text": "Yeah, I got here like an hour ago. I'm still trying to get my bearings.",
           "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/dia_%E6%B0%91%E5%AE%BF%E5%88%9D%E9%81%87/ElevenLabs_2025-12-14T09_20_56_Jessica_pre_sp100_s50_sb75_v3-2.mp3",
-          "role": "host"
+          "role": "guest"
         },
         {
           "text": "Totally. The first day always feels a bit blurry until you settle in.",
@@ -29,38 +29,36 @@
           "role": "host"
         },
         {
-          "text": "I know, right? I’m actually hoping to find some places worth exploring nearby.",
+          "text": "I know, right? I'm actually hoping to find some places worth exploring nearby.",
           "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/dia_%E6%B0%91%E5%AE%BF%E5%88%9D%E9%81%87/ElevenLabs_2025-12-14T09_23_47_Jessica_pre_sp100_s50_sb75_v3-3.mp3",
-          "role": "host"
+          "role": "guest"
         },
         {
-          "text": "Oh, you’re in luck. There’s a small lookout point just ten minutes from here — it’s nothing fancy, but the view kind of surprises everyone.",
+          "text": "Oh, you're in luck. There's a small lookout point just ten minutes from here — it's nothing fancy, but the view kind of surprises everyone.",
           "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/dia_%E6%B0%91%E5%AE%BF%E5%88%9D%E9%81%87/ElevenLabs_2025-12-14T09_33_04_Chris_pre_sp100_s50_sb75_v3-3.mp3",
           "role": "host"
         },
         {
           "text": "That sounds perfect. I could really use a quiet spot after a long bus ride.",
           "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/dia_%E6%B0%91%E5%AE%BF%E5%88%9D%E9%81%87/ElevenLabs_2025-12-14T09_26_12_Jessica_pre_sp100_s50_sb75_v3-4.mp3",
-          "role": "host"
+          "role": "guest"
         },
         {
-          "text": "Then you’ll like it. And if you get hungry later, the night market opens around six. It’s cheap, loud, and honestly pretty fun.",
+          "text": "Then you'll like it. And if you get hungry later, the night market opens around six. It's cheap, loud, and honestly pretty fun.",
           "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/dia_%E6%B0%91%E5%AE%BF%E5%88%9D%E9%81%87/ElevenLabs_2025-12-14T09_34_03_Chris_pre_sp100_s50_sb75_v3-4.mp3",
           "role": "host"
         },
         {
           "text": "Nice. I might check it out after sunset.",
           "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/dia_%E6%B0%91%E5%AE%BF%E5%88%9D%E9%81%87/ElevenLabs_2025-12-14T09_27_31_Jessica_pre_sp100_s50_sb75_v3-5.mp3",
-          "role": "host"
+          "role": "guest"
         },
         {
           "text": "Yeah, do it. This neighborhood feels different at night — in a good way.",
           "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/dia_%E6%B0%91%E5%AE%BF%E5%88%9D%E9%81%87/ElevenLabs_2025-12-14T09_35_03_Chris_pre_sp100_s50_sb75_v3-5.mp3",
           "role": "host"
         }
-        // ... 请在这里继续添加剩余的8句对话，保持格式一致
       ]
     }
-    // *** 你未来新的课程，直接以逗号分隔，复制整个 {} 对象块添加在这里即可 ***
   ]
 }
