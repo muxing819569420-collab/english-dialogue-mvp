@@ -49,6 +49,32 @@
     </style>
 </head>
 <body>
+    <!-- 新增：课程选择页面 -->
+<div id="courseSelectionPage" class="page active">
+    <div class="card">
+        <h1>📚 选择学习主题</h1>
+        <p class="description">请选择一个情景对话开始学习。</p>
+        <!-- 课程卡片将动态插入到这里 -->
+        <div id="courseSelectionContainer"></div>
+    </div>
+</div>
+
+<!-- 修改：原入口页改为“模式选择页”，初始不显示 -->
+<div id="modeSelectionPage" class="page">
+    <div class="card">
+        <!-- 注意：这里的标题和描述需要能动态更新 -->
+        <h1 id="courseTitle">🏡 民宿初遇</h1>
+        <p id="courseDescription" class="description">描述加载中...</p>
+        <button id="modeAll" class="mode-button">🎧 全部播放</button>
+        <button id="modeOne" class="mode-button">🔊 逐句播放</button>
+        <button onclick="switchPage('courseSelectionPage')" class="mode-button" style="background:#6b7280;">← 返回课程列表</button>
+    </div>
+</div>
+
+<!-- 播放页面保持不变，但需注意返回逻辑 -->
+<div id="playPage" class="page">
+    <!-- ... 播放页原有代码 ... -->
+</div>
     <!-- 入口页面：模式选择 -->
     <div id="entryPage" class="page active">
         <div class="card">
@@ -81,204 +107,223 @@
     </div>
 
     <script>
-        // ============== 核心数据与状态 ==============
-        // 你只需要替换下面每个对象中的 `audioUrl` 为真实的音频文件链接
-        // 状态变量
-let courseLibrary = []; // 全部课程
-let currentCourse = null; // 当前选中课程
+// ============== 全局状态与初始化 ==============
+let courseLibrary = [];
+let currentCourse = null;
+let currentDialogue = []; // 当前课程的对话数组
 let currentMode = null;
 let currentIndex = 0;
+let currentAudio = null;
+let isPlaying = false;
 
-// 页面加载时获取课程数据
+// DOM 元素
+const courseSelectionPage = document.getElementById('courseSelectionPage');
+const modeSelectionPage = document.getElementById('modeSelectionPage');
+const playPage = document.getElementById('playPage');
+const courseSelectionContainer = document.getElementById('courseSelectionContainer');
+const courseTitleEl = document.getElementById('courseTitle');
+const courseDescriptionEl = document.getElementById('courseDescription');
+const currentSentenceEl = document.getElementById('currentSentence');
+const currentIndexEl = document.getElementById('currentIndex');
+const totalSentencesEl = document.getElementById('totalSentences');
+const playPauseBtn = document.getElementById('playPauseBtn');
+const nextBtn = document.getElementById('nextBtn');
+const backBtn = document.getElementById('backBtn');
+const modeHint = document.getElementById('modeHint');
+const modeAllBtn = document.getElementById('modeAll');
+const modeOneBtn = document.getElementById('modeOne');
+
+// ============== 课程加载与选择 ==============
 async function loadCourses() {
     try {
         const response = await fetch('courses.json');
         const data = await response.json();
         courseLibrary = data.courses;
-        // 渲染课程选择菜单
         renderCourseSelection();
     } catch (error) {
         console.error('加载课程失败:', error);
-        // 可以在这里设置一个默认的课程，或显示错误信息
+        courseSelectionContainer.innerHTML = '<p style="color:#ef4444;">课程加载失败，请刷新重试。</p>';
     }
 }
 
-// 渲染课程选择界面
 function renderCourseSelection() {
-    const container = document.getElementById('courseSelectionContainer');
-    // 清空容器
-    container.innerHTML = '';
-    // 动态生成课程卡片
+    courseSelectionContainer.innerHTML = '';
     courseLibrary.forEach(course => {
-        const courseCard = `
-            <div class="course-card" onclick="selectCourse('${course.id}')">
-                <div class="course-icon">${course.icon}</div>
-                <h3>${course.title}</h3>
-                <p>${course.description}</p>
-                <div class="course-meta">
-                    <span class="scenario">${course.scenario}</span>
-                    <span class="level">${course.level}</span>
-                </div>
+        const courseCard = document.createElement('div');
+        courseCard.className = 'course-card';
+        courseCard.style = 'border: 2px dashed #e0e5ff; border-radius: 16px; padding: 20px; margin: 15px 0; cursor: pointer; background: #f8f9ff; transition: all 0.2s;';
+        courseCard.innerHTML = `
+            <div style="font-size: 2.5rem; margin-bottom: 10px;">${course.icon}</div>
+            <h3 style="margin: 5px 0; color: #1f2937;">${course.title}</h3>
+            <p style="color: #6b7280; font-size: 0.95rem; margin-bottom: 10px;">${course.description}</p>
+            <div style="font-size: 0.8rem; color: #9ca3af;">
+                <span>${course.scenario}</span> • <span>${course.level}</span>
             </div>
         `;
-        container.innerHTML += courseCard;
+        courseCard.onclick = () => selectCourse(course.id);
+        courseCard.onmouseover = () => courseCard.style.backgroundColor = '#e0e7ff';
+        courseCard.onmouseout = () => courseCard.style.backgroundColor = '#f8f9ff';
+        courseSelectionContainer.appendChild(courseCard);
     });
 }
 
-// 选择课程
 function selectCourse(courseId) {
     currentCourse = courseLibrary.find(c => c.id === courseId);
-    // 隐藏课程选择页，显示你原有的“模式选择”页面
-    // 同时，将 currentCourse.dialogue 赋值给原有的播放逻辑
-    console.log('已选择课程:', currentCourse.title);
-    // 这里需要调用你已有的页面切换函数
+    if (!currentCourse) return;
+    
+    currentDialogue = currentCourse.dialogue; // 关键：设置当前对话
+    currentIndex = 0; // 重置索引
+    
+    // 更新模式选择页的课程信息
+    courseTitleEl.textContent = currentCourse.title;
+    courseDescriptionEl.textContent = currentCourse.description;
+    
+    // 切换到模式选择页
+    switchPage('modeSelectionPage');
 }
-        // 应用状态
-        let currentMode = null; // 'all' 或 'one'
-        let currentIndex = 0;
-        let currentAudio = null;
-        let isPlaying = false;
 
-        // ============== DOM 元素 ==============
-        const entryPage = document.getElementById('entryPage');
-        const playPage = document.getElementById('playPage');
-        const currentSentenceEl = document.getElementById('currentSentence');
-        const currentIndexEl = document.getElementById('currentIndex');
-        const totalSentencesEl = document.getElementById('totalSentences');
-        const playPauseBtn = document.getElementById('playPauseBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const backBtn = document.getElementById('backBtn');
-        const modeHint = document.getElementById('modeHint');
+// ============== 页面导航 ==============
+function switchPage(pageId) {
+    // 停止可能正在播放的音频
+    if (currentAudio && isPlaying) {
+        currentAudio.pause();
+        isPlaying = false;
+    }
+    
+    // 隐藏所有页面
+    document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+    });
+    
+    // 显示目标页面
+    document.getElementById(pageId).classList.add('active');
+}
 
-        // ============== 核心功能函数 ==============
-        // 切换页面显示
-        function switchPage(toPageId) {
-            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-            document.getElementById(toPageId).classList.add('active');
+// ============== 播放逻辑 (基于 currentDialogue) ==============
+function updatePlayPage() {
+    if (!currentDialogue || currentDialogue.length === 0) {
+        currentSentenceEl.textContent = '对话内容加载错误。';
+        return;
+    }
+    
+    currentSentenceEl.textContent = currentDialogue[currentIndex].text;
+    currentIndexEl.textContent = currentIndex + 1;
+    totalSentencesEl.textContent = currentDialogue.length;
+
+    // 更新模式提示和按钮
+    if (currentMode === 'all') {
+        modeHint.textContent = '💡 全部播放模式：对话将自动连续播放，您可以使用播放/暂停按钮控制。';
+        nextBtn.style.display = 'none';
+    } else {
+        modeHint.textContent = '💡 逐句播放模式：点击"播放"按钮聆听当前句子，完成后可手动重复或切换下一句。';
+        nextBtn.style.display = 'flex';
+        
+        // 更新“下一句”按钮状态
+        if (currentIndex === currentDialogue.length - 1) {
+            nextBtn.textContent = '🎉 完成';
+            nextBtn.style.background = '#8b5cf6';
+            nextBtn.onclick = () => { 
+                alert(`恭喜！你已经学完【${currentCourse.title}】。`);
+                switchPage('modeSelectionPage');
+            };
+        } else {
+            nextBtn.textContent = '下一句 ➡';
+            nextBtn.style.background = '#10b981';
+            nextBtn.onclick = playNextSentence;
         }
+    }
+    updatePlayPauseButton();
+}
 
-        // 更新播放页面的显示（句子文本、进度）
-        function updatePlayPage() {
-            currentSentenceEl.textContent = dialogue[currentIndex].text;
-            // 更新为简化的进度显示格式 “1/10”
-            currentIndexEl.textContent = currentIndex + 1;
-            totalSentencesEl.textContent = dialogue.length;
+function updatePlayPauseButton() {
+    playPauseBtn.textContent = isPlaying ? '⏸️ 暂停' : '▶ 播放';
+}
 
-            // 根据模式和状态更新按钮文字和提示
-            if (currentMode === 'all') {
-                modeHint.textContent = '💡 全部播放模式：对话将自动连续播放，您可以使用播放/暂停按钮控制。';
-                nextBtn.style.display = 'none';
-            } else {
-                modeHint.textContent = '💡 逐句播放模式：每次播放当前句子，完成后可手动重复或切换下一句。';
-                nextBtn.style.display = 'flex';
-                // 如果是最后一句，改变“下一句”按钮的文案和状态
-                if (currentIndex === dialogue.length - 1) {
-                    nextBtn.textContent = '🎉 完成';
-                    nextBtn.style.background = '#8b5cf6';
-                    nextBtn.onclick = () => { alert('恭喜！你已经学完本段对话。'); };
-                } else {
-                    nextBtn.textContent = '下一句 ➡';
-                    nextBtn.style.background = '#10b981';
-                    nextBtn.onclick = playNextSentence;
-                }
-            }
-            updatePlayPauseButton();
-        }
+function playCurrentAudio() {
+    if (!currentDialogue || !currentDialogue[currentIndex]) return;
+    
+    stopCurrentAudio();
+    currentAudio = new Audio(currentDialogue[currentIndex].audioUrl);
+    currentAudio.onended = handleAudioEnded;
+    currentAudio.play();
+    isPlaying = true;
+    updatePlayPauseButton();
+}
 
-        // 更新播放/暂停按钮的显示
-        function updatePlayPauseButton() {
-            playPauseBtn.textContent = isPlaying ? '⏸️ 暂停' : '▶ 播放';
-        }
+function stopCurrentAudio() {
+    if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+        currentAudio.onended = null;
+        isPlaying = false;
+    }
+}
 
-        // 加载并播放当前句子的音频
-        function playCurrentAudio() {
-            stopCurrentAudio();
-
-            currentAudio = new Audio(dialogue[currentIndex].audioUrl);
-            currentAudio.onended = handleAudioEnded;
-            currentAudio.play();
-            isPlaying = true;
-            updatePlayPauseButton();
-        }
-
-        // 停止当前音频
-        function stopCurrentAudio() {
-            if (currentAudio) {
-                currentAudio.pause();
-                currentAudio.currentTime = 0;
-                currentAudio.onended = null;
-                isPlaying = false;
-            }
-        }
-
-        // 处理音频播放结束
-        function handleAudioEnded() {
-            isPlaying = false;
-            updatePlayPauseButton();
-
-            if (currentMode === 'all') {
-                if (currentIndex < dialogue.length - 1) {
-                    currentIndex++;
-                    updatePlayPage();
-                    setTimeout(playCurrentAudio, 300);
-                } else {
-                    alert('完整对话播放完毕！');
-                }
-            }
-        }
-
-        // 播放下一句 (用于逐句播放模式)
-        function playNextSentence() {
-            if (currentIndex < dialogue.length - 1) {
-                currentIndex++;
-                updatePlayPage();
-                if (currentMode === 'one') {
-                    setTimeout(playCurrentAudio, 300);
-                }
-            }
-        }
-
-        // 处理播放/暂停按钮点击
-        function togglePlayPause() {
-            if (!currentAudio) {
-                playCurrentAudio();
-            } else if (isPlaying) {
-                currentAudio.pause();
-                isPlaying = false;
-            } else {
-                currentAudio.play();
-                isPlaying = true;
-            }
-            updatePlayPauseButton();
-        }
-
-        // ============== 事件监听与页面初始化 ==============
-        // 模式选择按钮事件
-        document.getElementById('modeAll').addEventListener('click', () => {
-            currentMode = 'all';
-            currentIndex = 0;
-            switchPage('playPage');
+function handleAudioEnded() {
+    isPlaying = false;
+    updatePlayPauseButton();
+    
+    // 全部播放模式的自动连播逻辑
+    if (currentMode === 'all') {
+        if (currentIndex < currentDialogue.length - 1) {
+            currentIndex++;
             updatePlayPage();
-            setTimeout(playCurrentAudio, 500);
-        });
+            setTimeout(playCurrentAudio, 300);
+        } else {
+            alert(`完整对话【${currentCourse.title}】播放完毕！`);
+            switchPage('modeSelectionPage');
+        }
+    }
+}
 
-        document.getElementById('modeOne').addEventListener('click', () => {
-            currentMode = 'one';
-            currentIndex = 0;
-            switchPage('playPage');
-            updatePlayPage();
-            setTimeout(playCurrentAudio, 500);
-        });
+function playNextSentence() {
+    if (currentIndex < currentDialogue.length - 1) {
+        currentIndex++;
+        updatePlayPage();
+        if (currentMode === 'one') {
+            setTimeout(playCurrentAudio, 300);
+        }
+    }
+}
 
-        // 播放控制按钮事件
-        playPauseBtn.addEventListener('click', togglePlayPause);
-        backBtn.addEventListener('click', () => {
-            stopCurrentAudio();
-            switchPage('entryPage');
-        });
+function togglePlayPause() {
+    if (!currentAudio) {
+        playCurrentAudio();
+    } else if (isPlaying) {
+        currentAudio.pause();
+        isPlaying = false;
+    } else {
+        currentAudio.play();
+        isPlaying = true;
+    }
+    updatePlayPauseButton();
+}
 
-        // 初始化：设置总句数
-        totalSentencesEl.textContent = dialogue.length;
-    </script>
+// ============== 事件监听 ==============
+// 模式选择按钮
+modeAllBtn.addEventListener('click', () => {
+    currentMode = 'all';
+    currentIndex = 0;
+    switchPage('playPage');
+    updatePlayPage();
+    setTimeout(playCurrentAudio, 500);
+});
+
+modeOneBtn.addEventListener('click', () => {
+    currentMode = 'one';
+    currentIndex = 0;
+    switchPage('playPage');
+    updatePlayPage();
+    setTimeout(playCurrentAudio, 500);
+});
+
+// 播放控制按钮
+playPauseBtn.addEventListener('click', togglePlayPause);
+backBtn.addEventListener('click', () => switchPage('modeSelectionPage'));
+
+// ============== 初始化 ==============
+// 页面加载完成后，获取课程数据
+window.addEventListener('DOMContentLoaded', loadCourses);
+</script>
 </body>
 </html>
