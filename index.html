@@ -83,48 +83,56 @@
     <script>
         // ============== 核心数据与状态 ==============
         // 你只需要替换下面每个对象中的 `audioUrl` 为真实的音频文件链接
-        const dialogue = [
-            {
-                text: "Hey, is this seat taken?",
-                audioUrl: "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/dia_%E6%B0%91%E5%AE%BF%E5%88%9D%E9%81%87/ElevenLabs_2025-12-14T09_12_20_Jessica_pre_sp100_s50_sb75_v3-1.mp3" // 请替换
-            },
-            {
-                text: "No, go ahead. You just checked in, right?",
-                audioUrl: "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/dia_%E6%B0%91%E5%AE%BF%E5%88%9D%E9%81%87/ElevenLabs_2025-12-14T09_30_52_Chris_pre_sp100_s50_sb75_v3-1.mp3" // 请替换
-            },
-            {
-                text: "Yeah, I got here like an hour ago. I’m still trying to get my bearings.",
-                audioUrl: "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/dia_%E6%B0%91%E5%AE%BF%E5%88%9D%E9%81%87/ElevenLabs_2025-12-14T09_20_56_Jessica_pre_sp100_s50_sb75_v3-2.mp3" // 请替换
-            },
-            {
-                text: "Totally. The first day always feels a bit blurry until you settle in.",
-                audioUrl: "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/dia_%E6%B0%91%E5%AE%BF%E5%88%9D%E9%81%87/ElevenLabs_2025-12-14T09_31_38_Chris_pre_sp100_s50_sb75_v3-2.mp3" // 请替换
-            },
-            {
-                text: "I know, right? I’m actually hoping to find some places worth exploring nearby.",
-                audioUrl: "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/dia_%E6%B0%91%E5%AE%BF%E5%88%9D%E9%81%87/ElevenLabs_2025-12-14T09_23_47_Jessica_pre_sp100_s50_sb75_v3-3.mp3" // 请替换
-            },
-            {
-                text: "Oh, you’re in luck. There’s a small lookout point just ten minutes from here — it’s nothing fancy, but the view kind of surprises everyone.",
-                audioUrl: "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/dia_%E6%B0%91%E5%AE%BF%E5%88%9D%E9%81%87/ElevenLabs_2025-12-14T09_33_04_Chris_pre_sp100_s50_sb75_v3-3.mp3" // 请替换
-            },
-            {
-                text: "That sounds perfect. I could really use a quiet spot after a long bus ride.",
-                audioUrl: "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/dia_%E6%B0%91%E5%AE%BF%E5%88%9D%E9%81%87/ElevenLabs_2025-12-14T09_26_12_Jessica_pre_sp100_s50_sb75_v3-4.mp3" // 请替换
-            },
-            {
-                text: "Then you’ll like it. And if you get hungry later, the night market opens around six. It’s cheap, loud, and honestly pretty fun.",
-                audioUrl: "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/dia_%E6%B0%91%E5%AE%BF%E5%88%9D%E9%81%87/ElevenLabs_2025-12-14T09_34_03_Chris_pre_sp100_s50_sb75_v3-4.mp3" // 请替换
-            },
-            {
-                text: "Nice. I might check it out after sunset.",
-                audioUrl: "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/dia_%E6%B0%91%E5%AE%BF%E5%88%9D%E9%81%87/ElevenLabs_2025-12-14T09_27_31_Jessica_pre_sp100_s50_sb75_v3-5.mp3" // 请替换
-            },
-            {
-                text: "Yeah, do it. This neighborhood feels different at night — in a good way.",
-                audioUrl: "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/dia_%E6%B0%91%E5%AE%BF%E5%88%9D%E9%81%87/ElevenLabs_2025-12-14T09_35_03_Chris_pre_sp100_s50_sb75_v3-5.mp3" // 请替换
-            }
-        ];
+        // 状态变量
+let courseLibrary = []; // 全部课程
+let currentCourse = null; // 当前选中课程
+let currentMode = null;
+let currentIndex = 0;
+
+// 页面加载时获取课程数据
+async function loadCourses() {
+    try {
+        const response = await fetch('courses.json');
+        const data = await response.json();
+        courseLibrary = data.courses;
+        // 渲染课程选择菜单
+        renderCourseSelection();
+    } catch (error) {
+        console.error('加载课程失败:', error);
+        // 可以在这里设置一个默认的课程，或显示错误信息
+    }
+}
+
+// 渲染课程选择界面
+function renderCourseSelection() {
+    const container = document.getElementById('courseSelectionContainer');
+    // 清空容器
+    container.innerHTML = '';
+    // 动态生成课程卡片
+    courseLibrary.forEach(course => {
+        const courseCard = `
+            <div class="course-card" onclick="selectCourse('${course.id}')">
+                <div class="course-icon">${course.icon}</div>
+                <h3>${course.title}</h3>
+                <p>${course.description}</p>
+                <div class="course-meta">
+                    <span class="scenario">${course.scenario}</span>
+                    <span class="level">${course.level}</span>
+                </div>
+            </div>
+        `;
+        container.innerHTML += courseCard;
+    });
+}
+
+// 选择课程
+function selectCourse(courseId) {
+    currentCourse = courseLibrary.find(c => c.id === courseId);
+    // 隐藏课程选择页，显示你原有的“模式选择”页面
+    // 同时，将 currentCourse.dialogue 赋值给原有的播放逻辑
+    console.log('已选择课程:', currentCourse.title);
+    // 这里需要调用你已有的页面切换函数
+}
         // 应用状态
         let currentMode = null; // 'all' 或 'one'
         let currentIndex = 0;
