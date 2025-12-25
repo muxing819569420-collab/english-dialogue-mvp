@@ -1,124 +1,124 @@
 {
-  "courses": [
-    {
-      "id": "homestay_chat",
-      "title": "🏡 民宿初遇",
-      "description": "入住民宿后，在公共区和老板的自然闲聊。学习如何开启对话、表达感受并获取本地推荐。",
-      "icon": "🏡",
-      "scenario": "Travel & Accommodation",
-      "level": "Intermediate",
-      "dialogue": [
+    "courses": [
         {
-          "text": "Hey, is this seat taken?",
-          "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/dia_%E6%B0%91%E5%AE%BF%E5%88%9D%E9%81%87/ElevenLabs_2025-12-14T09_12_20_Jessica_pre_sp100_s50_sb75_v3-1.mp3",
-          "role": "guest"
+            "id": "homestay_chat",
+            "title": "🏡 民宿初遇",
+            "description": "入住民宿后，在公共区和老板的自然闲聊。学习如何开启对话、表达感受并获取本地推荐。",
+            "icon": "🏡",
+            "scenario": "Travel & Accommodation",
+            "level": "Intermediate",
+            "dialogue": [
+                {
+                    "text": "Hey, is this seat taken?",
+                    "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/dia_%E6%B0%91%E5%AE%BF%E5%88%9D%E9%81%87/ElevenLabs_2025-12-14T09_12_20_Jessica_pre_sp100_s50_sb75_v3-1.mp3",
+                    "role": "guest"
+                },
+                {
+                    "text": "No, go ahead. You just checked in, right?",
+                    "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/dia_%E6%B0%91%E5%AE%BF%E5%88%9D%E9%81%87/ElevenLabs_2025-12-14T09_30_52_Chris_pre_sp100_s50_sb75_v3-1.mp3",
+                    "role": "host"
+                },
+                {
+                    "text": "Yeah, I got here like an hour ago. I'm still trying to get my bearings.",
+                    "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/dia_%E6%B0%91%E5%AE%BF%E5%88%9D%E9%81%87/ElevenLabs_2025-12-14T09_20_56_Jessica_pre_sp100_s50_sb75_v3-2.mp3",
+                    "role": "guest"
+                },
+                {
+                    "text": "Totally. The first day always feels a bit blurry until you settle in.",
+                    "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/dia_%E6%B0%91%E5%AE%BF%E5%88%9D%E9%81%87/ElevenLabs_2025-12-14T09_31_38_Chris_pre_sp100_s50_sb75_v3-2.mp3",
+                    "role": "host"
+                },
+                {
+                    "text": "I know, right? I'm actually hoping to find some places worth exploring nearby.",
+                    "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/dia_%E6%B0%91%E5%AE%BF%E5%88%9D%E9%81%87/ElevenLabs_2025-12-14T09_23_47_Jessica_pre_sp100_s50_sb75_v3-3.mp3",
+                    "role": "guest"
+                },
+                {
+                    "text": "Oh, you're in luck. There's a small lookout point just ten minutes from here — it's nothing fancy, but the view kind of surprises everyone.",
+                    "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/dia_%E6%B0%91%E5%AE%BF%E5%88%9D%E9%81%87/ElevenLabs_2025-12-14T09_33_04_Chris_pre_sp100_s50_sb75_v3-3.mp3",
+                    "role": "host"
+                },
+                {
+                    "text": "That sounds perfect. I could really use a quiet spot after a long bus ride.",
+                    "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/dia_%E6%B0%91%E5%AE%BF%E5%88%9D%E9%81%87/ElevenLabs_2025-12-14T09_26_12_Jessica_pre_sp100_s50_sb75_v3-4.mp3",
+                    "role": "guest"
+                },
+                {
+                    "text": "Then you'll like it. And if you get hungry later, the night market opens around six. It's cheap, loud, and honestly pretty fun.",
+                    "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/dia_%E6%B0%91%E5%AE%BF%E5%88%9D%E9%81%87/ElevenLabs_2025-12-14T09_34_03_Chris_pre_sp100_s50_sb75_v3-4.mp3",
+                    "role": "host"
+                },
+                {
+                    "text": "Nice. I might check it out after sunset.",
+                    "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/dia_%E6%B0%91%E5%AE%BF%E5%88%9D%E9%81%87/ElevenLabs_2025-12-14T09_27_31_Jessica_pre_sp100_s50_sb75_v3-5.mp3",
+                    "role": "guest"
+                },
+                {
+                    "text": "Yeah, do it. This neighborhood feels different at night — in a good way.",
+                    "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/dia_%E6%B0%91%E5%AE%BF%E5%88%9D%E9%81%87/ElevenLabs_2025-12-14T09_35_03_Chris_pre_sp100_s50_sb75_v3-5.mp3",
+                    "role": "host"
+                }
+            ]
         },
         {
-          "text": "No, go ahead. You just checked in, right?",
-          "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/dia_%E6%B0%91%E5%AE%BF%E5%88%9D%E9%81%87/ElevenLabs_2025-12-14T09_30_52_Chris_pre_sp100_s50_sb75_v3-1.mp3",
-          "role": "host"
-        },
-        {
-          "text": "Yeah, I got here like an hour ago. I'm still trying to get my bearings.",
-          "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/dia_%E6%B0%91%E5%AE%BF%E5%88%9D%E9%81%87/ElevenLabs_2025-12-14T09_20_56_Jessica_pre_sp100_s50_sb75_v3-2.mp3",
-          "role": "guest"
-        },
-        {
-          "text": "Totally. The first day always feels a bit blurry until you settle in.",
-          "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/dia_%E6%B0%91%E5%AE%BF%E5%88%9D%E9%81%87/ElevenLabs_2025-12-14T09_31_38_Chris_pre_sp100_s50_sb75_v3-2.mp3",
-          "role": "host"
-        },
-        {
-          "text": "I know, right? I'm actually hoping to find some places worth exploring nearby.",
-          "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/dia_%E6%B0%91%E5%AE%BF%E5%88%9D%E9%81%87/ElevenLabs_2025-12-14T09_23_47_Jessica_pre_sp100_s50_sb75_v3-3.mp3",
-          "role": "guest"
-        },
-        {
-          "text": "Oh, you're in luck. There's a small lookout point just ten minutes from here — it's nothing fancy, but the view kind of surprises everyone.",
-          "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/dia_%E6%B0%91%E5%AE%BF%E5%88%9D%E9%81%87/ElevenLabs_2025-12-14T09_33_04_Chris_pre_sp100_s50_sb75_v3-3.mp3",
-          "role": "host"
-        },
-        {
-          "text": "That sounds perfect. I could really use a quiet spot after a long bus ride.",
-          "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/dia_%E6%B0%91%E5%AE%BF%E5%88%9D%E9%81%87/ElevenLabs_2025-12-14T09_26_12_Jessica_pre_sp100_s50_sb75_v3-4.mp3",
-          "role": "guest"
-        },
-        {
-          "text": "Then you'll like it. And if you get hungry later, the night market opens around six. It's cheap, loud, and honestly pretty fun.",
-          "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/dia_%E6%B0%91%E5%AE%BF%E5%88%9D%E9%81%87/ElevenLabs_2025-12-14T09_34_03_Chris_pre_sp100_s50_sb75_v3-4.mp3",
-          "role": "host"
-        },
-        {
-          "text": "Nice. I might check it out after sunset.",
-          "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/dia_%E6%B0%91%E5%AE%BF%E5%88%9D%E9%81%87/ElevenLabs_2025-12-14T09_27_31_Jessica_pre_sp100_s50_sb75_v3-5.mp3",
-          "role": "guest"
-        },
-        {
-          "text": "Yeah, do it. This neighborhood feels different at night — in a good way.",
-          "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/dia_%E6%B0%91%E5%AE%BF%E5%88%9D%E9%81%87/ElevenLabs_2025-12-14T09_35_03_Chris_pre_sp100_s50_sb75_v3-5.mp3",
-          "role": "host"
+            "id": "restaurant_ordering",
+            "title": "🍽️ 餐厅点餐",
+            "description": "在餐厅询问座位、点餐及与服务员自然交流。学习如何提出需求、做出选择并表达偏好。",
+            "icon": "🍽️",
+            "scenario": "Dining & Food",
+            "level": "Intermediate",
+            "dialogue": [
+                {
+                    "text": "Hi there, do you have a table for one?",
+                    "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/restaurant_ordering/01.mp3",
+                    "role": "guest"
+                },
+                {
+                    "text": "Sure, you can take that little corner spot by the window — it’s quieter over there.",
+                    "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/restaurant_ordering/02.mp3",
+                    "role": "host"
+                },
+                {
+                    "text": "Perfect, thanks. I’ve been walking around all morning, so I could really use a break.",
+                    "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/restaurant_ordering/03.mp3",
+                    "role": "guest"
+                },
+                {
+                    "text": "No problem. Do you already know what you want, or do you want a minute?",
+                    "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/restaurant_ordering/04.mp3",
+                    "role": "host"
+                },
+                {
+                    "text": "Hmm… I’m kind of torn. What’s something you’d actually recommend?",
+                    "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/restaurant_ordering/05.mp3",
+                    "role": "guest"
+                },
+                {
+                    "text": "The grilled fish is really good today — super fresh. But the noodle bowl is the one people end up ordering twice.",
+                    "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/restaurant_ordering/06.mp3",
+                    "role": "host"
+                },
+                {
+                    "text": "That sounds amazing. Okay, I’ll go with the noodle bowl.",
+                    "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/restaurant_ordering/07.mp3",
+                    "role": "guest"
+                },
+                {
+                    "text": "Great choice. Do you want anything to drink while you wait?",
+                    "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/restaurant_ordering/08.mp3",
+                    "role": "host"
+                },
+                {
+                    "text": "Just some warm tea, please. Something light.",
+                    "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/restaurant_ordering/09.mp3",
+                    "role": "guest"
+                },
+                {
+                    "text": "Got it. I’ll bring everything over. Just relax — you look like you’ve had a long day.",
+                    "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/restaurant_ordering/10.mp3",
+                    "role": "host"
+                }
+            ]
         }
-      ]
-    },
-    {
-  "id": "restaurant_ordering",
-  "title": "🍽️ 餐厅点餐",
-  "description": "在餐厅询问座位、点餐及与服务员自然交流。学习如何提出需求、做出选择并表达偏好。",
-  "icon": "🍽️",
-  "scenario": "Dining & Food",
-  "level": "Intermediate",
-  "dialogue": [
-    {
-      "text": "Hi there, do you have a table for one?",
-      "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/restaurant_ordering/01.mp3",
-      "role": "guest"
-    },
-    {
-      "text": "Sure, you can take that little corner spot by the window — it’s quieter over there.",
-      "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/restaurant_ordering/02.mp3",
-      "role": "host"
-    },
-    {
-      "text": "Perfect, thanks. I’ve been walking around all morning, so I could really use a break.",
-      "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/restaurant_ordering/03.mp3",
-      "role": "guest"
-    },
-    {
-      "text": "No problem. Do you already know what you want, or do you want a minute?",
-      "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/restaurant_ordering/04.mp3",
-      "role": "host"
-    },
-    {
-      "text": "Hmm… I’m kind of torn. What’s something you’d actually recommend?",
-      "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/restaurant_ordering/05.mp3",
-      "role": "guest"
-    },
-    {
-      "text": "The grilled fish is really good today — super fresh. But the noodle bowl is the one people end up ordering twice.",
-      "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/restaurant_ordering/06.mp3",
-      "role": "host"
-    },
-    {
-      "text": "That sounds amazing. Okay, I’ll go with the noodle bowl.",
-      "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/restaurant_ordering/07.mp3",
-      "role": "guest"
-    },
-    {
-      "text": "Great choice. Do you want anything to drink while you wait?",
-      "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/restaurant_ordering/08.mp3",
-      "role": "host"
-    },
-    {
-      "text": "Just some warm tea, please. Something light.",
-      "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/restaurant_ordering/09.mp3",
-      "role": "guest"
-    },
-    {
-      "text": "Got it. I’ll bring everything over. Just relax — you look like you’ve had a long day.",
-      "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/restaurant_ordering/10.mp3",
-      "role": "host"
-    }
-  ]
-}
-  ]
+    ]
 }
