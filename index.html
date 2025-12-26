@@ -76,7 +76,8 @@
         <!-- 返回按钮放在播放页面的左上角 -->
         <button id="backBtn">← 返回</button>
         <div class="card">
-            <h2>情景对话：民宿闲聊</h2>
+            <!-- 修改：为标题增加ID，以便动态更新 -->
+            <h2 id="playPageTitle">情景对话：民宿闲聊</h2>
             <div class="sentence-container">
                 <div id="currentSentence">正在加载句子...</div>
                 <div class="player-controls">
@@ -101,6 +102,7 @@ let currentMode = null;
 let currentIndex = 0;
 let currentAudio = null;
 let isPlaying = false;
+let playPageTitle = ""; // 新增：用于存储播放页标题
 
 // DOM 元素
 const courseSelectionPage = document.getElementById('courseSelectionPage');
@@ -164,6 +166,9 @@ function selectCourse(courseId) {
     courseTitleEl.textContent = currentCourse.title;
     courseDescriptionEl.textContent = currentCourse.description;
     
+    // 新增：设置播放页标题
+    playPageTitle = `情景对话：${currentCourse.title}`;
+    
     // 切换到模式选择页
     switchPage('modeSelectionPage');
 }
@@ -191,6 +196,9 @@ function updatePlayPage() {
         currentSentenceEl.textContent = '对话内容加载错误。';
         return;
     }
+    
+    // 新增：更新播放页标题
+    document.getElementById('playPageTitle').textContent = playPageTitle;
     
     currentSentenceEl.textContent = currentDialogue[currentIndex].text;
     currentIndexEl.textContent = currentIndex + 1;
