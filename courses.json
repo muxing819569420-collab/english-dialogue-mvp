@@ -119,6 +119,66 @@
                     "role": "host"
                 }
             ]
+        },
+        {
+            "id": "city_walk",
+            "title": "🚶 城市漫步",
+            "description": "与当地居民偶遇，获取关于探索城市、发现隐藏小径和享受慢节奏生活的贴心建议。",
+            "icon": "🚶",
+            "scenario": "Travel & Local Life",
+            "level": "Intermediate",
+            "dialogue": [
+                {
+                    "text": "Hey, you’re the traveler who checked in this morning, right?",
+                    "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/city_walk/01.mp3",
+                    "role": "host"
+                },
+                {
+                    "text": "Yeah, that’s me. I’m still trying to get my bearings.",
+                    "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/city_walk/02.mp3",
+                    "role": "guest"
+                },
+                {
+                    "text": "Well, you’re already slaying it — most people look totally lost on day one.",
+                    "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/city_walk/03.mp3",
+                    "role": "host"
+                },
+                {
+                    "text": "Thanks. I’m just trying to figure out what’s actually walkable from here.",
+                    "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/city_walk/04.mp3",
+                    "role": "guest"
+                },
+                {
+                    "text": "Pretty much everything is. The old town is like ten minutes away if you cut through the park.",
+                    "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/city_walk/05.mp3",
+                    "role": "host"
+                },
+                {
+                    "text": "Good to know. I was about to pull up a map, but honestly I’d rather wander a bit.",
+                    "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/city_walk/06.mp3",
+                    "role": "guest"
+                },
+                {
+                    "text": "That’s the best way to do it. You’ll stumble on little cafés and side streets you’d never find online.",
+                    "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/city_walk/07.mp3",
+                    "role": "host"
+                },
+                {
+                    "text": "Perfect. I kind of want a slow day — nothing scheduled, nothing rushed.",
+                    "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/city_walk/08.mp3",
+                    "role": "guest"
+                },
+                {
+                    "text": "You’ll love it then. This city rewards people who take it easy.",
+                    "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/city_walk/09.mp3",
+                    "role": "host"
+                },
+                {
+                    "text": "Sounds exactly like what I need. Thanks for the tip.",
+                    "audioUrl": "https://dia-1391984492.cos.ap-shanghai.myqcloud.com/city_walk/10.mp3",
+                    "role": "guest"
+                }
+            ]
         }
     ]
 }
